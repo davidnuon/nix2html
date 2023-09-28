@@ -16,7 +16,21 @@ in rec {
     inherit children;
   };
 
-  textNode = with builtins;
+  /*
+  Makes a funciton that models an element with no specific attributes
+  (e.g div, p, strong)
+  */
+  genericElementFactory = name: {
+    attributes ? {},
+    children ? [],
+  }:
+    basicElement {
+      inherit name;
+      inherit attributes;
+      inherit children;
+    };
+
+  text = with builtins;
     {text}: {
       name = "<TEXT>";
       children =

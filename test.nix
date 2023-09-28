@@ -2,33 +2,29 @@
 let
   pkgs = import <nixpkgs> {};
   inherit (pkgs) lib;
-  nix2html = import ./lib.nix {inherit lib;};
-  p = let
+  nix2html = import ./lib {inherit lib;};
+  helloWorldP = let
     child =
-      nix2html.textNode
+      nix2html.text
       {
-        text = ["Hello"];
+        text = ["Hello World"];
       };
   in
-    nix2html.basicElement {
-      name = "p";
-      children = [
-        child
-      ];
+    nix2html.p {
+      children = [child];
     };
 in
   with nix2html;
     render {
-      root = basicElement {
-        name = "html";
+      root = html {
         attributes = {
           a = "b";
           c = "d";
         };
         children = [
-          p
-          p
-          p
+          helloWorldP
+          helloWorldP
+          helloWorldP
         ];
       };
     }
