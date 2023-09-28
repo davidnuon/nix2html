@@ -1,9 +1,18 @@
+{lib}:
 let
-  attrsToList = with builtins;
-    attrs: (map (key: {
-      name = key;
-      value = getAttr key attrs;
-    }) (attrNames attrs));
+  /*
+  Converts an attrset to a list of `{name, value}` pairs.
+
+  Type: attrsToNameValuePair :: AttrSet -> [{ name :: String; value :: Any; }]
+
+  Examples:
+    attrsToNameValuePair { a = 1; b = 2; }
+    => [
+         { name = "a"; value = 1; }
+         { name = "b"; value = 2; }
+       ]
+  */
+  attrsToNameValuePair = lib.mapAttrsToList (n: v: {name = n; value = v;});
   isAttrsEmpty = with builtins; attrs: length (attrNames attrs) == 0;
 in rec {
   basicElement = {
@@ -39,7 +48,7 @@ in rec {
   render = root:
     with builtins; let
       attributeString = let
-        pairs = attrsToList root.attributes;
+        pairs = attrsToNameValuePair root.attributes;
         parts = map (p: "${p.name}=\"${p.value}\"") pairs;
         out = foldl' (a: b: "${a} ${b}") "" parts;
       in

@@ -1,6 +1,8 @@
 #!/usr/bin/env -S nix-instantiate --eval
 let
-  nix2html = import ./lib;
+  pkgs = import <nixpkgs> {};
+  inherit (pkgs) lib;
+  nix2html = import ./lib {inherit lib;};
   helloWorldP = let
     child =
       nix2html.text
