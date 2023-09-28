@@ -11,9 +11,7 @@ in rec {
     attributes ? {},
     children ? [],
   }: {
-    inherit name;
-    inherit attributes;
-    inherit children;
+    inherit name attributes children;
   };
 
   /*
@@ -25,9 +23,7 @@ in rec {
     children ? [],
   }:
     basicElement {
-      inherit name;
-      inherit attributes;
-      inherit children;
+      inherit name attributes children;
     };
 
   text = with builtins;
