@@ -1,5 +1,5 @@
-{lib}: let
-  nix2html = import ./internal.nix {inherit lib;};
+let
+  nix2html = import ./internal.nix;
   inherit (nix2html) basicElement text render genericElementFactory;
 in {
   inherit text render;

@@ -1,4 +1,4 @@
-{lib}: let
+let
   attrsToList = with builtins;
     attrs: (map (key: {
       name = key;
