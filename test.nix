@@ -13,16 +13,14 @@ let
     };
 in
   with nix2html;
-    render {
-      root = html {
-        attributes = {
-          a = "b";
-          c = "d";
-        };
-        children = [
-          helloWorldP
-          helloWorldP
-          helloWorldP
-        ];
+    render (html {
+      attributes = {
+        a = "b";
+        c = "d";
       };
-    }
+      children = [
+        helloWorldP
+        helloWorldP
+        helloWorldP
+      ];
+    })

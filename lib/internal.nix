@@ -36,7 +36,7 @@ in rec {
         text;
     };
 
-  render = {root}:
+  render = root:
     with builtins; let
       attributeString = let
         pairs = attrsToList root.attributes;
@@ -49,7 +49,7 @@ in rec {
       childrenString =
         if length root.children == 0
         then ""
-        else foldl' (a: b: "${a}${b}") "" (map (c: render {root = c;}) root.children);
+        else foldl' (a: b: "${a}${b}") "" (map render root.children);
     in
       if root.name == "<TEXT>"
       then root.children
