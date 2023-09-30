@@ -14,6 +14,11 @@ in rec {
     inherit name attributes children;
   };
 
+  string2textNode = el:
+    if builtins.typeOf el == "string"
+    then text {text = [el];}
+    else el;
+
   /*
   Makes a funciton that models an element with no specific attributes
   (e.g div, p, strong)
@@ -23,7 +28,8 @@ in rec {
     children ? [],
   }:
     basicElement {
-      inherit name attributes children;
+      inherit name attributes;
+      children = map string2textNode children;
     };
 
   text = with builtins;
