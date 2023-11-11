@@ -1,107 +1,112 @@
-{lib}:
+{ lib }:
 let
-  nix2html = import ./internal.nix {inherit lib;};
-  inherit (nix2html) basicElement text render genericElementFactory;
-in {
-  inherit text render;
-
-  html = genericElementFactory "html";
-  head = genericElementFactory "head";
-  body = genericElementFactory "body";
-  title = genericElementFactory "title";
-  meta = genericElementFactory "meta";
-  link = genericElementFactory "link";
-  style = genericElementFactory "style";
-  script = genericElementFactory "script";
-  noscript = genericElementFactory "noscript";
-  article = genericElementFactory "article";
-  section = genericElementFactory "section";
-  nav = genericElementFactory "nav";
-  aside = genericElementFactory "aside";
-  h1 = genericElementFactory "h1";
-  h2 = genericElementFactory "h2";
-  h3 = genericElementFactory "h3";
-  h4 = genericElementFactory "h4";
-  h5 = genericElementFactory "h5";
-  h6 = genericElementFactory "h6";
-  p = genericElementFactory "p";
-  a = genericElementFactory "a";
-  abbr = genericElementFactory "abbr";
-  address = genericElementFactory "address";
-  blockquote = genericElementFactory "blockquote";
-  cite = genericElementFactory "cite";
-  code = genericElementFactory "code";
-  em = genericElementFactory "em";
-  strong = genericElementFactory "strong";
-  span = genericElementFactory "span";
-  div = genericElementFactory "div";
-  img = genericElementFactory "img";
-  audio = genericElementFactory "audio";
-  video = genericElementFactory "video";
-  canvas = genericElementFactory "canvas";
-  svg = genericElementFactory "svg";
-  ul = genericElementFactory "ul";
-  ol = genericElementFactory "ol";
-  li = genericElementFactory "li";
-  dl = genericElementFactory "dl";
-  dt = genericElementFactory "dt";
-  dd = genericElementFactory "dd";
-  table = genericElementFactory "table";
-  caption = genericElementFactory "caption";
-  th = genericElementFactory "th";
-  tr = genericElementFactory "tr";
-  td = genericElementFactory "td";
-  thead = genericElementFactory "thead";
-  tbody = genericElementFactory "tbody";
-  tfoot = genericElementFactory "tfoot";
-  col = genericElementFactory "col";
-  colgroup = genericElementFactory "colgroup";
-  form = genericElementFactory "form";
-  input = genericElementFactory "input";
-  textarea = genericElementFactory "textarea";
-  button = genericElementFactory "button";
-  label = genericElementFactory "label";
-  select = genericElementFactory "select";
-  option = genericElementFactory "option";
-  fieldset = genericElementFactory "fieldset";
-  legend = genericElementFactory "legend";
-  br = genericElementFactory "br";
-  hr = genericElementFactory "hr";
-  pre = genericElementFactory "pre";
-  q = genericElementFactory "q";
-  ins = genericElementFactory "ins";
-  del = genericElementFactory "del";
-  figure = genericElementFactory "figure";
-  figcaption = genericElementFactory "figcaption";
-  iframe = genericElementFactory "iframe";
-  object = genericElementFactory "object";
-  param = genericElementFactory "param";
-  embed = genericElementFactory "embed";
-  header = genericElementFactory "header";
-  footer = genericElementFactory "footer";
-  main = genericElementFactory "main";
-  menu = genericElementFactory "menu";
-  details = genericElementFactory "details";
-  summary = genericElementFactory "summary";
-  mark = genericElementFactory "mark";
-  time = genericElementFactory "time";
-  output = genericElementFactory "output";
-  progress = genericElementFactory "progress";
-  meter = genericElementFactory "meter";
-  ruby = genericElementFactory "ruby";
-  rt = genericElementFactory "rt";
-  rp = genericElementFactory "rp";
-  b = genericElementFactory "b";
-  i = genericElementFactory "i";
-  u = genericElementFactory "u";
-  s = genericElementFactory "s";
-  strike = genericElementFactory "strike";
-  small = genericElementFactory "small";
-  sub = genericElementFactory "sub";
-  sup = genericElementFactory "sup";
-  hgroup = genericElementFactory "hgroup";
-  command = genericElementFactory "command";
-  datalist = genericElementFactory "datalist";
-  keygen = genericElementFactory "keygen";
-  menuitem = genericElementFactory "menuitem";
-}
+  nix2html = import ./internal.nix { inherit lib; };
+  inherit (nix2html)
+    genericElementFactory;
+in
+{
+  inherit (nix2html)
+    text
+    render;
+} // lib.genAttrs [
+  "html"
+  "head"
+  "body"
+  "title"
+  "meta"
+  "link"
+  "style"
+  "script"
+  "noscript"
+  "article"
+  "section"
+  "nav"
+  "aside"
+  "h1"
+  "h2"
+  "h3"
+  "h4"
+  "h5"
+  "h6"
+  "p"
+  "a"
+  "abbr"
+  "address"
+  "blockquote"
+  "cite"
+  "code"
+  "em"
+  "strong"
+  "span"
+  "div"
+  "img"
+  "audio"
+  "video"
+  "canvas"
+  "svg"
+  "ul"
+  "ol"
+  "li"
+  "dl"
+  "dt"
+  "dd"
+  "table"
+  "caption"
+  "th"
+  "tr"
+  "td"
+  "thead"
+  "tbody"
+  "tfoot"
+  "col"
+  "colgroup"
+  "form"
+  "input"
+  "textarea"
+  "button"
+  "label"
+  "select"
+  "option"
+  "fieldset"
+  "legend"
+  "br"
+  "hr"
+  "pre"
+  "q"
+  "ins"
+  "del"
+  "figure"
+  "figcaption"
+  "iframe"
+  "object"
+  "param"
+  "embed"
+  "header"
+  "footer"
+  "main"
+  "menu"
+  "details"
+  "summary"
+  "mark"
+  "time"
+  "output"
+  "progress"
+  "meter"
+  "ruby"
+  "rt"
+  "rp"
+  "b"
+  "i"
+  "u"
+  "s"
+  "strike"
+  "small"
+  "sub"
+  "sup"
+  "hgroup"
+  "command"
+  "datalist"
+  "keygen"
+  "menuitem"
+]
+  (x: genericElementFactory x)
